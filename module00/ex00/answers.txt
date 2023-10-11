@@ -1,0 +1,8 @@
+conda is package manager and envs for python
+- conda info --envs : to check envs available
+- conda activate envs
+- conda list : to check packages installed with their versions 
+- conda info packageName : to check metadata of the package
+- conda remove, install : for reinstalling numpy 
+- freeze packages : conda list --export > requirements.txt
+
