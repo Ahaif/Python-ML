@@ -1,37 +1,47 @@
-import sys
 import string
 
-def text_analyzer(input_argument):
-    print(f"The text contains {len(input_argument)} characters:")
+def text_analyzer(input_text=None):
+    """
+    Analyze a text and display the sums of its upper-case characters, lower-case characters, punctuation characters,
+    and spaces.
 
-    if not isinstance(input_argument, str):
-        print("ERROR: Provide a single string argument")
+    Args:
+    input_text (str): The text to be analyzed.
+
+    Returns:
+    None
+    """
+
+    # Check if input_text is None or an empty string
+    if input_text is None or not input_text:
+        input_text = input("Please provide a string: ")
+
+    # Check if the input_text is a string
+    if not isinstance(input_text, str):
+        print("Error: Input is not a valid string.")
         return
 
-    count_upper = 0
-    count_lower = 0
-    count_space = 0
-    count_punctuation = 0
+    # Initialize counts
+    upper_count = 0
+    lower_count = 0
+    punctuation_count = 0
+    space_count = 0
 
-    for c in input_argument:
-        if c.isalpha():
-            if c.isupper():
-                count_upper += 1
-            elif c.islower():
-                count_lower += 1
-        elif c.isspace():
-            count_space += 1
-        elif c in string.punctuation:
-            count_punctuation += 1
+    for char in input_text:
+        if char.isupper():
+            upper_count += 1
+        elif char.islower():
+            lower_count += 1
+        elif char in string.punctuation:
+            punctuation_count += 1
+        elif char.isspace():
+            space_count += 1
 
-    print(f"Uppercase letters: {count_upper}")
-    print(f"Lowercase letters: {count_lower}")
-    print(f"Spaces: {count_space}")
-    print(f"Punctuation characters: {count_punctuation}")
+    # Display the results
+    print(f"Number of uppercase characters: {upper_count}")
+    print(f"Number of lowercase characters: {lower_count}")
+    print(f"Number of punctuation characters: {punctuation_count}")
+    print(f"Number of spaces: {space_count}")
 
-if __name__ == "__main":
-    if len(sys.argv) != 2:
-        print("ERROR: Provide a single string argument")
-    else:
-        input_argument = sys.argv[1]
-        text_analyzer(input_argument)
+# Test the function
+# text_analyzer("Hello, World! This is a test.")
