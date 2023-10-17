@@ -1,4 +1,5 @@
 import string
+import sys
 
 def text_analyzer(input_text=None):
     """
@@ -42,6 +43,14 @@ def text_analyzer(input_text=None):
     print(f"Number of lowercase characters: {lower_count}")
     print(f"Number of punctuation characters: {punctuation_count}")
     print(f"Number of spaces: {space_count}")
+
+
+    if __name__ == "__main__":
+        if len(sys.argv) > 1:
+            print("ERROR: MORE THAN ONE ARGS")
+            return
+        else:   
+            text_analyzer(sys.argv[1])
 
 # Test the function
 # text_analyzer("Hello, World! This is a test.")
