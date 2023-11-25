@@ -1,13 +1,8 @@
-
-
-
-
-
 class Vector:
-    def __init__(self, input):
-        if isinstance(input,int):
-            self.values = [float(x) for x in range(input)]
-            self.shape = (input, 1)
+    def __init__(self, input_data):
+        if isinstance(input_data, int):
+            self.values = [[float(i)] for i in range(input_data)]
+            self.shape = (input_data, 1)
         elif isinstance(input_data, list):
             if all(isinstance(row, list) and len(row) == 1 for row in input_data):
                 self.values = input_data
@@ -23,4 +18,31 @@ class Vector:
             self.shape = (end - start + 1, 1)
         else:
             raise ValueError("Invalid input for Vector")
-     
+    
+
+    def __add__(self, other):
+        if self.shape != other.shape:
+            raise ValueError("Vectors must have the same shape for addition")
+
+        result_values = []
+        for x, y in zip(self.values, other.values):
+            result_values.append([x[0] + y[0]])
+
+        return Vector(result_values)
+
+
+
+
+if __name__ == '__main__':
+    v = Vector(5)
+    print(v.values)
+    print(v.shape)
+    v = Vector([[1.0, 2.0, 3.0]])
+    print(v.values)
+    print(v.shape)
+    v = Vector([[1.0], [2.0], [3.0]])
+    print(v.values)
+    print(v.shape)
+    v = Vector((10, 15))
+    print(v.values)
+    print(v.shape)
